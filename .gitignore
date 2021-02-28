@@ -1,0 +1,5 @@
+/projects
+/.databases
+/.docker/php/nginx/conf/*.*
+!/.docker/php/nginx/conf/example.conf
+docker-compose.y*

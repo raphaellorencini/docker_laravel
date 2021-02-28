@@ -1,0 +1,47 @@
+version: '3'
+
+networks:
+  php_network:
+    driver: bridge
+
+services:
+    php:
+      build: .docker/php
+      container_name: php
+      volumes:
+        - FULL_PATH_FOR_YOUR_PROJECTS:/var/www/html
+      extra_hosts:
+        - "YOUR_LOCAL_HOST1:0.0.0.0"
+        - "YOUR_LOCAL_HOST2:0.0.0.0"
+      ports:
+        - "80:80"
+        - "443:443"
+      networks:
+        - php_network
+      depends_on:
+        - mysql
+        - redis
+
+    mysql:
+        build: .docker/mysql
+        command: --innodb-use-native-aio=0
+        container_name: mysql
+        restart: always
+        tty: true
+        ports:
+          - "3306:3306"
+        volumes:
+          - FULL_PATH_FOR_YOUR_DATABASES:/var/lib/mysql
+        environment:
+          - MYSQL_ROOT_PASSWORD=root
+          - MYSQL_USER=root
+        networks:
+          - php_network
+
+    redis:
+        image: redis:alpine
+        container_name: redis
+        expose:
+          - 6379
+        networks:
+          - php_network
