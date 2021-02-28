@@ -1,6 +1,6 @@
 # Getting started with the Laravel Nginx Mysql Development Kit
 
-* Read this in other languages: [Portuguese] (README.md), [English] (README.en.md). *
+*Read this in other languages: [Portuguese] (README.md), [English] (README.en.md).*
 
 Open source project using Docker to create a multi-php environment with Laravel, Nginx, Mysql and Redis. This project can be used for other PHP frameworks, feel free to change at will.
 
